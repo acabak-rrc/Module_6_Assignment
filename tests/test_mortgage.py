@@ -64,7 +64,27 @@ class MortgageTests(TestCase):
         expected_value = "Amortization provided is invalid."
         self.assertEqual(str(context.exception), expected_value)
 
-    #ANOTHER TEST HERE LATER FOR TESTING PROPER VALUES SETTING
+    def test__init__valid_args(self):
+        #Arrange
+        #good values already arrranged in class scope
+
+        #Act
+        temporary_mortgage = Mortgage(self.good_amount, self.good_rate, self.good_frequency, self.good_amortization)
+        actual_amount = temporary_mortgage.loan_amount
+        actual_rate = temporary_mortgage.rate
+        actual_frequency = temporary_mortgage.frequency
+        actual_amortization = temporary_mortgage.amortization
+
+        #Assert     
+        expected_amount = self.good_amount
+        expected_rate = self.good_rate
+        expected_frequency = self.good_frequency
+        expected_amortization = self.good_amortization
+
+        self.assertEqual(actual_amount, expected_amount)
+        self.assertEqual(actual_rate, expected_rate)
+        self.assertEqual(actual_frequency, expected_frequency)
+        self.assertEqual(actual_amortization, expected_amortization)
 
     def test_mortgage_loan_amount_negative(self):
         #Arrange
