@@ -4,7 +4,7 @@
 Using classes and enums to determine mortgage payment options for clients.
 
 ## Author
-[Your name]
+Aidan Cabak
 
 ## Assignment
 Assignment 6: Defining and using classes.
