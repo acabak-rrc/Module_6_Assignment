@@ -130,3 +130,29 @@ class MortgageTests(TestCase):
         #Assert
         expected_value = "Rate provided is invalid."
         self.assertEqual(str(context.exception), expected_value)
+
+    def test_mortgage_frequency_setter(self):
+        #Arrange
+        another_good_frequency = MortgageFrequency.MONTHLY
+
+        #Act
+        temporary_mortgage = Mortgage(self.good_amount, self.good_rate, self.good_frequency, self.good_amortization)
+        temporary_mortgage.frequency = another_good_frequency
+        actual = temporary_mortgage.frequency
+
+        #Assert
+        expected_value = MortgageFrequency.MONTHLY
+        self.assertEqual(actual, expected_value)
+
+    def test_mortgage_frequency_setter_invalid(self):
+        #Arrange
+        bad_frequency = "I am not a mortgage frequency"
+
+        #Act
+        temporary_mortgage = Mortgage(self.good_amount, self.good_rate, self.good_frequency, self.good_amortization)
+        with self.assertRaises(ValueError) as context:
+            temporary_mortgage.frequency = bad_frequency
+
+        #Assert
+        expected_value = "Frequency provided is invalid."
+        self.assertEqual(str(context.exception), expected_value)

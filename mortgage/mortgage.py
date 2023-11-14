@@ -66,4 +66,17 @@ class Mortgage:
             self._rate = value
         else:
             raise ValueError("Rate provided is invalid.")
+        
+    @property
+    def frequency(self):
+        """Getter for frequency attribute."""
+        return self._frequency
+    
+    @frequency.setter
+    def frequency(self, value):
+        """Setter for frequency attribute"""
+        if isinstance(value, self.MortgageFrequency):
+            self._frequency = value
+        else:
+            raise ValueError("Frequency provided is invalid.")
 
