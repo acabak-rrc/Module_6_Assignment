@@ -79,4 +79,17 @@ class Mortgage:
             self._frequency = value
         else:
             raise ValueError("Frequency provided is invalid.")
+        
+    @property
+    def amortization(self):
+        """Getter for amortization attribute."""
+        return self._amortization
+    
+    @amortization.setter
+    def amortization(self, value):
+        """Setter for amortization attribute"""
+        if value in self.VALID_AMORTIZATION:
+            self._amortization = value
+        else:
+            raise ValueError("Amortization provided is invalid.")
 
