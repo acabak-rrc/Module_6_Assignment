@@ -53,4 +53,17 @@ class Mortgage:
             self._loan_amount = value
         else:
             raise ValueError("Loan Amount must be a positive number.")
+        
+    @property
+    def rate(self):
+        """Getter for rate attribute."""
+        return self._rate
+    
+    @rate.setter
+    def rate(self, value):
+        """Setter for loan_amount attribute"""
+        if isinstance(value, self.MortgageRate):
+            self._rate = value
+        else:
+            raise ValueError("Rate provided is invalid.")
 
