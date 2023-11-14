@@ -24,7 +24,7 @@ class Mortgage:
         if loan_amount > 0:
             self._loan_amount = loan_amount
         else:
-            raise ValueError("Loan amount must be positive.")
+            raise ValueError("Loan amount must be a positive number.")
         
         if isinstance(rate, self.MortgageRate):
             self._rate = rate
