@@ -203,4 +203,66 @@ class MortgageTests(TestCase):
         expected_value = "Amortization provided is invalid."
         self.assertEqual(str(context.exception), expected_value)
 
+    def mortgage_calculate_payment_scenario_1(self):
+        #Arrange
+        test_amount = 4723.24
+        test_rate = MortgageRate.FIXED_3
+        test_frequency = MortgageFrequency.MONTHLY
+        test_amortization = VALID_AMORTIZATION[5]
+
+        #Act
+        temporary_mortgage = Mortgage(test_amount, test_rate, test_frequency, test_amortization)
+        actual = Mortgage.calculate_payment()
+
+        #Assert
+        expected = 27.68
+        self.assertAlmostEquals(expected, actual, 2)
+    
+    def mortgage_calculate_payment_scenario_2(self):
+        #Arrange
+        test_amount = 81858.23
+        test_rate = MortgageRate.VARIABLE_1
+        test_frequency = MortgageFrequency.WEEKLY
+        test_amortization = VALID_AMORTIZATION[2]
+
+        #Act
+        temporary_mortgage = Mortgage(test_amount, test_rate, test_frequency, test_amortization)
+        actual = Mortgage.calculate_payment()
+
+
+        #Assert
+        expected = 468.93
+        self.assertAlmostEquals(expected, actual, 2)
+
+    def mortgage_calculate_payment_scenario_3(self):
+        #Arrange
+        test_amount = 7264
+        test_rate = MortgageRate.FIXED_5
+        test_frequency = MortgageFrequency.BI_WEEKLY
+        test_amortization = VALID_AMORTIZATION[3]
+
+        #Act
+        temporary_mortgage = Mortgage(test_amount, test_rate, test_frequency, test_amortization)
+        actual = Mortgage.calculate_payment()
+
+        #Assert
+        expected = 34.20
+        self.assertAlmostEquals(expected, actual, 2)
+
+    def mortgage_calculate_payment_scenario_4(self):
+        #Arrange
+        test_amount = 142.12
+        test_rate = MortgageRate.VARIABLE_5
+        test_frequency = MortgageFrequency.MONTHLY
+        test_amortization = VALID_AMORTIZATION[1]
+
+        #Act
+        temporary_mortgage = Mortgage(test_amount, test_rate, test_frequency, test_amortization)
+        actual = Mortgage.calculate_payment()
+
+        #Assert
+        expected = 1.61
+        self.assertAlmostEquals(expected, actual, 2)
+
+
     

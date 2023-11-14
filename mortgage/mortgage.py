@@ -20,7 +20,9 @@ class Mortgage:
     from mortgage.pixell_lookup import MortgageRate, MortgageFrequency, VALID_AMORTIZATION
 
     def __init__(self, loan_amount: float, rate: MortgageRate, frequency: MortgageFrequency, amortization: int):
-
+        """
+        Initialization function for Mortgage class. Reads from args and sets attribute values.
+        """
         if loan_amount > 0:
             self._loan_amount = loan_amount
         else:
@@ -92,4 +94,22 @@ class Mortgage:
             self._amortization = value
         else:
             raise ValueError("Amortization provided is invalid.")
+        
+    def calculate_payment(self) -> float:
+        """
+        Args:
+            N/A
+
+        Returns:
+            float: Calculated mortgage payment value
+
+        Raises:
+            N/A
+        """
+        monthly_rate = self.rate / 12 
+        number_of_payments = (self.amortization * self.frequency)
+        calculated_payment = self.loan_amount * ((monthly_rate * (1 + monthly_rate) ** number_of_payments)/(((1 + monthly_rate) ** number_of_payments) - 1))
+        return calculated_payment
+
+
 
