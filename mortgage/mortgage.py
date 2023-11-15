@@ -106,10 +106,22 @@ class Mortgage:
         Raises:
             N/A
         """
-        monthly_rate = self.rate / 12 
-        number_of_payments = (self.amortization * self.frequency)
+        monthly_rate = self.rate.value / 12 
+        number_of_payments = (self.amortization * self.frequency.value)
         calculated_payment = self.loan_amount * ((monthly_rate * (1 + monthly_rate) ** number_of_payments)/(((1 + monthly_rate) ** number_of_payments) - 1))
         return calculated_payment
+    
+    def __str__(self):
+        """
+        String representation of Mortgage object.
+        """
+        displayed_rate = self.rate.value * 100       
+        return (f"Mortgage amount: ${float(self.loan_amount):,.2f}\n"
+                f"Rate: {float(displayed_rate)}%\n"
+                f"Amortization: {int(self.amortization)}\n"
+                f"Frequency: {self.frequency.name.capitalize()} -- Calculated Payment: ${float(self.calculate_payment()):,.2f}\n")
+            
+        
 
 
 

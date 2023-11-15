@@ -264,5 +264,56 @@ class MortgageTests(TestCase):
         expected = 1.61
         self.assertAlmostEquals(expected, actual, 2)
 
+    def test_mortgage__str__monthly(self):
+        #Arrange
+        test_amount = 142.12
+        test_rate = MortgageRate.VARIABLE_5
+        test_frequency = MortgageFrequency.MONTHLY
+        test_amortization = VALID_AMORTIZATION[1]
+
+        #Act
+        temporary_mortgage = Mortgage(test_amount, test_rate, test_frequency, test_amortization)
+        actual = str(temporary_mortgage)
+
+        #Assert
+        expected = (f"Mortgage amount: $142.12\n"
+                    f"Rate: 6.50%\n"
+                    f"Amortization: 5\n"
+                    f"Frequency: Monthly -- Calculated Payment: $1.61\n")
+
+    def test_mortgage__str__biweekly(self):
+        #Arrange
+        test_amount = 142.12
+        test_rate = MortgageRate.VARIABLE_5
+        test_frequency = MortgageFrequency.WEEKLY
+        test_amortization = VALID_AMORTIZATION[1]
+
+        #Act
+        temporary_mortgage = Mortgage(test_amount, test_rate, test_frequency, test_amortization)
+        actual = str(temporary_mortgage)
+
+        #Assert
+        expected = (f"Mortgage amount: $142.12\n"
+                    f"Rate: 6.50%\n"
+                    f"Amortization: 5\n"
+                    f"Frequency: Weekly -- Calculated Payment: $0.81\n")
+
+    def test_mortgage__str__weekly(self):
+        #Arrange
+        test_amount = 142.12
+        test_rate = MortgageRate.VARIABLE_5
+        test_frequency = MortgageFrequency.BI_WEEKLY
+        test_amortization = VALID_AMORTIZATION[1]
+
+        #Act
+        temporary_mortgage = Mortgage(test_amount, test_rate, test_frequency, test_amortization)
+        actual = str(temporary_mortgage)
+
+        #Assert
+        expected = (f"Mortgage amount: $142.12\n"
+                    f"Rate: 6.50%\n"
+                    f"Amortization: 5\n"
+                    f"Frequency: Bi_weekly -- Calculated Payment: $1.02\n")
+
 
     
