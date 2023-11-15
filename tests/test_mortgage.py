@@ -277,9 +277,10 @@ class MortgageTests(TestCase):
 
         #Assert
         expected = (f"Mortgage amount: $142.12\n"
-                    f"Rate: 6.50%\n"
-                    f"Amortization: 5\n"
+                    f"Rate: 6.5%\n"
+                    f"Amortization: 10\n"
                     f"Frequency: Monthly -- Calculated Payment: $1.61\n")
+        self.assertEqual(expected, actual)
 
     def test_mortgage__str__biweekly(self):
         #Arrange
@@ -294,9 +295,10 @@ class MortgageTests(TestCase):
 
         #Assert
         expected = (f"Mortgage amount: $142.12\n"
-                    f"Rate: 6.50%\n"
-                    f"Amortization: 5\n"
-                    f"Frequency: Weekly -- Calculated Payment: $0.81\n")
+                    f"Rate: 6.5%\n"
+                    f"Amortization: 10\n"
+                    f"Frequency: Weekly -- Calculated Payment: $0.82\n")
+        self.assertEqual(expected, actual)
 
     def test_mortgage__str__weekly(self):
         #Arrange
@@ -311,9 +313,26 @@ class MortgageTests(TestCase):
 
         #Assert
         expected = (f"Mortgage amount: $142.12\n"
-                    f"Rate: 6.50%\n"
-                    f"Amortization: 5\n"
+                    f"Rate: 6.5%\n"
+                    f"Amortization: 10\n"
                     f"Frequency: Bi_weekly -- Calculated Payment: $1.02\n")
+        self.assertEqual(expected, actual)
+        
+    def test_mortgage__repr__value(self):
+        #Arrange
+        test_amount = 142.12
+        test_rate = MortgageRate.VARIABLE_5
+        test_frequency = MortgageFrequency.BI_WEEKLY
+        test_amortization = VALID_AMORTIZATION[1]
+
+        #Act
+        temporary_mortgage = Mortgage(test_amount, test_rate, test_frequency, test_amortization)
+        actual = repr(temporary_mortgage)
+
+        #Assert
+        expected = "[142.12, 0.065, 10, 26]"
+        self.assertEqual(expected, actual)
+
 
 
     

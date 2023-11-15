@@ -115,11 +115,20 @@ class Mortgage:
         """
         String representation of Mortgage object.
         """
+
         displayed_rate = self.rate.value * 100       
         return (f"Mortgage amount: ${float(self.loan_amount):,.2f}\n"
                 f"Rate: {float(displayed_rate)}%\n"
                 f"Amortization: {int(self.amortization)}\n"
                 f"Frequency: {self.frequency.name.capitalize()} -- Calculated Payment: ${float(self.calculate_payment()):,.2f}\n")
+    
+    def __repr__(self):
+        """
+        Representation of Mortgage object.
+        """
+        return f"[{float(self.loan_amount)}, {float(self.rate.value)}, {int(self.amortization)}, {int(self.frequency.value)}]"
+
+
             
         
 
