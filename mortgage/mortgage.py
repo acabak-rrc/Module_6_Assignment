@@ -23,8 +23,8 @@ class Mortgage:
         """
         Initialization function for Mortgage class. Reads from args and sets attribute values.
         """
-        if loan_amount > 0:
-            self._loan_amount = loan_amount
+        if float(loan_amount) > 0:
+            self._loan_amount = float(loan_amount)
         else:
             raise ValueError("Loan amount must be a positive number.")
         
@@ -38,10 +38,10 @@ class Mortgage:
         else:
             raise ValueError("Frequency provided is invalid.")
         
-        if amortization in self.VALID_AMORTIZATION:
-            self._amortization = amortization
+        if int(amortization) in self.VALID_AMORTIZATION:
+                self._amortization = int(amortization)
         else:
-            raise ValueError("Amortization provided is invalid.")
+            raise ValueError("Amortization provided is invalid.")  
         
     @property
     def loan_amount(self):

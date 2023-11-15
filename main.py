@@ -10,40 +10,47 @@ Date: 2023-11-14
 ### ADD IMPORT STATEMENTS FOR THE MORTGAGE CLASS, THE 
 ### MORTGAGERATE AND MORTGAGEFREQUENCY ENUMERATIONS AND THE 
 ### VALID_AMORTIZATION LIST
-
+from mortgage.mortgage import Mortgage
+from mortgage.pixell_lookup import MortgageRate, MortgageFrequency, VALID_AMORTIZATION
 
 
 ### REQUIREMENT
 ### ENCLOSE THE FOLLOWING 'WITH OPEN' BLOCK IN A 'TRY-EXCEPT' BLOCK WHICH 
 ### WILL CATCH A 'FILENOTFOUNDERROR' EXCEPTION
-with open ("data\\pixell_river_mortgages.txt","r") as input:
-    print("**************************************************")
+try:
+    with open ("data\\pixell_river_mortgages.txt","r") as input:
+        print("**************************************************")
     
-    for data in input:
-        items = data.split(",")
+        for data in input:
+            items = data.split(",")
         
-        try:
-            amount = float(items[0])
-            rate = items[1]
-            amortization = items[2]
-            frequency = items[3]
+            try:
+                amount = float(items[0])
+                rate = items[1]
+                amortization = items[2]
+                frequency = items[3]
 
-            ### REQUIREMENT:
-            ### INSTANTIATE A MORTGAGE OBJECT USING THE VALUES
-            ### FOR AMOUNT, RATE, FREQUENCY AND AMORTIZATION ABOVE.
-
+                ### REQUIREMENT:
+                ### INSTANTIATE A MORTGAGE OBJECT USING THE VALUES
+                ### FOR AMOUNT, RATE, FREQUENCY AND AMORTIZATION ABOVE.
+                current_mortgage = Mortgage(amount, MortgageRate[rate], MortgageFrequency[frequency], amortization)
             
-            ### REQUIREMENT:
-            ### PRINT THE MORTGAGE OBJECT
+                ### REQUIREMENT:
+                ### PRINT THE MORTGAGE OBJECT
+                print(current_mortgage)
 
-        except ValueError as e:
-            # This except block will catch Explicit exceptions: 
-            # Those raised by the programmer in the Mortgage class.
-            print(f"Data: {data.strip()} caused Exception: {e}")
+            except ValueError as e:
+                # This except block will catch Explicit exceptions: 
+                # Those raised by the programmer in the Mortgage class.
+                print(f"Data: {data.strip()} caused Exception: {e}")
         
-        except Exception as e:
-            # This except block will catch Implicit exceptions:  
-            # Those raised through normal execution.
-            print(f"Data: {data.strip()} caused Exception: {e}")
-        finally:
-            print("**************************************************")
+            except Exception as e:
+                # This except block will catch Implicit exceptions:  
+                # Those raised through normal execution.
+                print(f"Data: {data.strip()} caused Exception: {e}")
+            finally:
+                print("**************************************************")
+
+except FileNotFoundError as err:
+    raise err("File does not exist.")
+

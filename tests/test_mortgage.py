@@ -54,7 +54,7 @@ class MortgageTests(TestCase):
 
     def test__init__invalid_amortization(self):
         #Arrange
-        bad_amortization = "I am not a valid amortization value"
+        bad_amortization = 9999
 
         #Act
         with self.assertRaises(ValueError) as context:
